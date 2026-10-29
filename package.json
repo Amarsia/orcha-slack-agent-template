@@ -1,0 +1,48 @@
+{
+  "name": "orcha-slack-agent-template",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A production-ready Slack agent powered by Next.js, Slack Bolt, and OrchaJS.",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node scripts/orchestrate.mjs dev",
+    "dev:web": "next dev",
+    "dev:slack": "tsx watch slack/worker.ts",
+    "build": "next build && npm run build:slack",
+    "build:slack": "esbuild slack/worker.ts --bundle --platform=node --format=esm --target=node22 --packages=external --outfile=dist/slack-worker.mjs",
+    "start": "node scripts/orchestrate.mjs production",
+    "start:web": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "agent:playground": "orchajs playground",
+    "agent:test": "orchajs test"
+  },
+  "dependencies": {
+    "@slack/bolt": "^4.5.0",
+    "lucide-react": "^0.483.0",
+    "next": "16.4.3",
+    "next-themes": "^0.4.6",
+    "orchajs": "^0.23.8",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@orchajs/playground-ui": "^0.2.5",
+    "@tailwindcss/postcss": "^4.1.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "16.4.3",
+    "esbuild": "^0.25.9",
+    "tailwindcss": "^4.1.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.0"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}

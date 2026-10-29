@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title">
+  <title id="title">Orbit bot avatar</title>
+  <defs>
+    <linearGradient id="bg" x1="18" y1="14" x2="112" y2="118" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2D9B68"/>
+      <stop offset="1" stop-color="#12553A"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="34" fill="url(#bg)"/>
+  <circle cx="64" cy="64" r="30" fill="none" stroke="#ECFFF4" stroke-width="7"/>
+  <circle cx="91" cy="40" r="9" fill="#C7A9FF"/>
+  <path d="M35 88c15 13 43 17 61-1" fill="none" stroke="#ECFFF4" stroke-linecap="round" stroke-width="6"/>
+</svg>

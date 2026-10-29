@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "slug": "orcha-slack-agent",
+  "name": "Slack AI Agent",
+  "description": "A production-ready Slack Socket Mode agent with a polished Next.js dashboard and local test chat.",
+  "repository": "Amarsia/orcha-slack-agent-template",
+  "framework": "nextjs",
+  "category": "slack-agent",
+  "agent": {
+    "entrypoint": "orcha/index.ts",
+    "defaultAgent": "assistant"
+  },
+  "environment": {
+    "required": [
+      {
+        "key": "OPENAI_API_KEY",
+        "label": "OpenAI API key",
+        "secret": true
+      },
+      {
+        "key": "SLACK_BOT_TOKEN",
+        "label": "Slack bot token",
+        "secret": true
+      },
+      {
+        "key": "SLACK_APP_TOKEN",
+        "label": "Slack app-level token",
+        "secret": true
+      },
+      {
+        "key": "VISITOR_COOKIE_SECRET",
+        "label": "Web visitor cookie secret",
+        "secret": true
+      }
+    ],
+    "optional": [
+      {
+        "key": "AMARSIA_PROJECT_KEY",
+        "label": "Amarsia project key",
+        "secret": true
+      },
+      {
+        "key": "SLACK_WORKSPACE_NAME",
+        "label": "Slack workspace display name",
+        "secret": false
+      }
+    ]
+  },
+  "deployment": {
+    "type": "container",
+    "port": 3000,
+    "persistentStorage": {
+      "path": "/data/sessions",
+      "required": true
+    }
+  }
+}

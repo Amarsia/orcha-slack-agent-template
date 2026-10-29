@@ -1,0 +1,9 @@
+{
+  "name": "Orbit",
+  "description": "A thoughtful Slack teammate for questions, writing, summaries, and planning.",
+  "provider": "openai",
+  "model": "gpt-5-mini",
+  "region": "provider_managed",
+  "maxTokens": 4096,
+  "outputType": "text"
+}
