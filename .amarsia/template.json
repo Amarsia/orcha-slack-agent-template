@@ -1,120 +1,57 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 1,
   "slug": "orcha-slack-agent",
   "name": "Slack AI Agent",
   "description": "A production-ready Slack Socket Mode agent with a polished Next.js dashboard and local test chat.",
+  "repository": "Amarsia/orcha-slack-agent-template",
+  "framework": "nextjs",
   "category": "slack-agent",
-  "tags": ["slack", "socket-mode", "bot", "streaming"],
-  "repository": {
-    "host": "github",
-    "owner": "Amarsia",
-    "name": "orcha-slack-agent-template",
-    "template": true
-  },
-  "stack": {
-    "framework": "nextjs",
-    "node": ">=20.9.0"
-  },
   "agent": {
     "entrypoint": "orcha/index.ts",
     "defaultAgent": "assistant"
   },
-  "customization": {
-    "productConfig": ["config/bot.ts"],
-    "agent": [
-      "orcha/assistant/index.json",
-      "orcha/assistant/instructions.md"
-    ],
-    "theme": ["app/globals.css"],
-    "integrations": ["slack-app-manifest.yml"],
-    "assets": ["public/**"]
-  },
   "environment": {
-    "variables": [
+    "required": [
       {
         "key": "OPENAI_API_KEY",
         "label": "OpenAI API key",
-        "required": true,
-        "secret": true,
-        "managedByAmarsia": true
+        "secret": true
       },
       {
         "key": "SLACK_BOT_TOKEN",
         "label": "Slack bot token",
-        "required": true,
         "secret": true
       },
       {
         "key": "SLACK_APP_TOKEN",
         "label": "Slack app-level token",
-        "required": true,
         "secret": true
       },
       {
         "key": "VISITOR_COOKIE_SECRET",
         "label": "Web visitor cookie secret",
-        "required": true,
-        "secret": true,
-        "generated": true,
-        "minLength": 32
+        "secret": true
+      }
+    ],
+    "optional": [
+      {
+        "key": "AMARSIA_PROJECT_KEY",
+        "label": "Amarsia project key",
+        "secret": true
       },
       {
         "key": "SLACK_WORKSPACE_NAME",
         "label": "Slack workspace display name",
-        "required": false,
         "secret": false
-      },
-      {
-        "key": "SLACK_WORKSPACE_URL",
-        "label": "Slack workspace URL",
-        "required": false,
-        "secret": false
-      },
-      {
-        "key": "AMARSIA_PROJECT_KEY",
-        "label": "Amarsia project key",
-        "required": false,
-        "secret": true,
-        "managedByAmarsia": true
-      },
-      {
-        "key": "AMARSIA_API_URL",
-        "label": "Amarsia API URL",
-        "required": false,
-        "secret": false,
-        "default": "https://api.amarsia.com"
-      },
-      {
-        "key": "ORCHA_SESSION_DIRECTORY",
-        "label": "Session storage directory",
-        "required": false,
-        "secret": false,
-        "default": "/data/sessions"
       }
-    ]
-  },
-  "validation": {
-    "commands": [
-      { "id": "lint", "run": "npm run lint" },
-      { "id": "typecheck", "run": "npm run typecheck" },
-      { "id": "agent-test", "run": "npm run agent:test" }
     ]
   },
   "deployment": {
     "type": "container",
-    "dockerfile": "Dockerfile",
     "port": 3000,
-    "healthcheck": "/",
-    "productionCommand": ["node", "scripts/orchestrate.mjs", "production"],
-    "processes": [
-      { "id": "web", "role": "http" },
-      { "id": "slack-worker", "role": "integration" }
-    ],
     "persistentStorage": {
       "path": "/data/sessions",
-      "environmentVariable": "ORCHA_SESSION_DIRECTORY",
-      "required": true,
-      "singleInstance": true
+      "required": true
     }
   }
 }
